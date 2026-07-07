@@ -14,6 +14,7 @@
 <meta name="theme-color" content="#17170F">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap');
 :root{
   --bg: #17170F;
   --panel: #1F1F16;
@@ -76,11 +77,14 @@ body.theme-desertcamo .appbar, body.theme-desertcamo .tabs .tab.active, body.the
   position: relative;
 }
 body.theme-desertcamo .appbar::before, body.theme-desertcamo .tabs .tab.active::before, body.theme-desertcamo footer::before{
-  content:''; position:absolute; inset:0; background: rgba(224,213,181,0.8); pointer-events:none;
+  content:''; position:absolute; inset:0; background: rgba(224,213,181,0.92); pointer-events:none;
 }
 body.theme-desertcamo .appbar > *, body.theme-desertcamo .tabs .tab.active > *, body.theme-desertcamo footer > *{ position:relative; z-index:1; }
+body.theme-desertcamo .appbar, body.theme-desertcamo .appbar *, body.theme-desertcamo .tabs .tab.active, body.theme-desertcamo .tabs .tab.active *, body.theme-desertcamo footer, body.theme-desertcamo footer *{
+  text-shadow: 0 0 4px rgba(224,213,181,0.95), 0 0 2px rgba(224,213,181,0.95);
+}
 *{ box-sizing: border-box; }
-body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--font); min-height: 100vh; padding: 0 0 60px; }
+body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--font); min-height: 100vh; padding: 0; }
 .wrap{ max-width: 960px; margin: 0 auto; padding: 0 16px; }
 .hellweek-banner{
   width:100%; height:44px; overflow:hidden; position:relative;
@@ -118,9 +122,9 @@ body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--fon
 .panel{ background: var(--panel); border: 1px solid var(--border); display:none; overflow:hidden; }
 .panel.active{ display:block; }
 .panel-body{ padding: 20px; position:relative; }
-.hero{ position:relative; height: 320px; background-size:cover; background-position:center;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
-.hero::before{ content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(23,23,15,0) 55%, rgba(23,23,15,0.45) 100%); }
+.hero{ position:relative; height: 320px; background-size:cover; background-position:center; filter: brightness(1.18);
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%); mask-image: linear-gradient(to bottom, black 90%, transparent 100%); }
+.hero::before{ content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(23,23,15,0) 65%, rgba(23,23,15,0.25) 100%); }
 .dash-hero{ height: 380px; }
 .tab-title{ font-size: 22px; font-weight:700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); padding: 14px 20px 0; }
 .subsection-title{ font-size: 22px; font-weight:700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); margin: 40px 0 4px; padding-top: 24px; border-top: 1px solid var(--border); }
@@ -154,7 +158,7 @@ body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--fon
 .rank-track-wrap{ background: var(--panel-alt); border:1px solid var(--border); border-radius:8px; padding:24px 18px 16px; margin-bottom:22px; }
 .rank-track{ position:relative; height:8px; background: var(--border); border-radius:4px; margin: 22px 6px 26px; }
 .rank-fill{ position:absolute; left:0; top:0; height:100%; background: var(--c-gold); border-radius:4px; }
-.rank-marker{ position:absolute; top:50%; width:34px; height:34px; border-radius:50%; border:2px solid var(--c-gold); object-fit:cover; transform:translate(-50%,-50%); box-shadow:0 2px 8px rgba(0,0,0,0.5); background:var(--panel); }
+.rank-marker{ position:absolute; top:50%; width:51px; height:51px; border-radius:50%; border:2px solid var(--c-gold); object-fit:cover; transform:translate(-50%,-50%); box-shadow:0 2px 8px rgba(0,0,0,0.5); background:var(--panel); }
 .rank-stages{ position:relative; height:34px; margin: 0 6px; font-size:10px; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted); }
 .rank-stages span{ display:flex; flex-direction:column; gap:3px; white-space:nowrap; }
 .rank-stages span.passed{ color:var(--c-gold); font-weight:700; }
@@ -163,23 +167,47 @@ body{ margin:0; background: var(--bg); color: var(--ink); font-family: var(--fon
 .streak-bars{ display:flex; flex-direction:column; gap:14px; margin-bottom:20px; }
 .streak-bar-row{ display:grid; grid-template-columns: 140px 1fr 78px; align-items:center; gap:12px; }
 .streak-bar-label{ font-size:11px; color: var(--ink); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.streak-bar-track{ position:relative; height:14px; background: var(--border); border-radius:7px; overflow:visible; }
+.streak-bar-track{ position:relative; height:14px; background: rgba(255,255,255,0.18); border-radius:7px; overflow:visible; }
 .streak-bar-fill{ height:100%; border-radius:7px; background: var(--c-gold); transition: width .3s ease; }
 .streak-bar-marker{ position:absolute; top:50%; transform:translate(-50%,-50%); font-size:15px; filter: drop-shadow(0 0 2px rgba(0,0,0,0.6)); }
+.streak-bar-best-label{ position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:9px; font-weight:700; color: var(--ink); opacity:0.85; }
+.record-wobble-overlay{ position:fixed; top:30%; left:50%; width:300px; z-index:220; background:transparent; pointer-events:none; animation: record-wobble-kf 3.2s ease; }
+.record-wobble-title{ text-align:center; color: var(--c-gold); font-weight:700; font-size:14px; margin-bottom:10px; text-shadow:0 2px 6px rgba(0,0,0,0.85); }
+@keyframes record-wobble-kf{
+  0%{ opacity:0; transform:translate(-50%,-50%) scale(0.8) rotate(0deg); }
+  8%{ opacity:1; transform:translate(-50%,-50%) scale(1.06) rotate(-4deg); }
+  18%{ transform:translate(-50%,-50%) scale(1) rotate(4deg); }
+  28%{ transform:translate(-50%,-50%) scale(1) rotate(-3deg); }
+  38%{ transform:translate(-50%,-50%) scale(1) rotate(2deg); }
+  48%{ transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+  85%{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+  100%{ opacity:0; transform:translate(-50%,-50%) scale(0.96); }
+}
 .streak-bar-nums{ font-size:10px; color: var(--muted); text-align:right; white-space:nowrap; }
 .streak-bar-nums b{ color: var(--ink); font-size:11px; }
-.stat-tiles{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
-.union-jack-banner{
-  width:100%; height:90px; margin-top:24px; overflow:hidden;
-  background-size:cover; background-position:center center;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 60%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 60%, transparent 100%);
+.stat-tiles{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; justify-items:center; }
+.union-jack-header{
+  width:100%; height:70px; overflow:hidden; position:relative; margin-top:20px;
+  background-size:cover; background-position:center 30%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
+  filter: url(#flagRippleFilter);
 }
-.stat-tile{ border:1px solid var(--border); border-top: 3px solid var(--accent-dim); border-radius:3px; background: var(--panel-alt); padding:14px; display:flex; flex-direction:column; gap:5px; min-width:0; position:relative; }
-.stat-tile .st-icon{ font-size:18px; }
-.stat-tile .st-value{ font-size:22px; font-weight:700; color: var(--ink); font-family: 'Trebuchet MS', sans-serif; }
-.stat-tile .st-label{ font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color: var(--accent); font-weight:700; }
-.stat-tile .st-sub{ font-size:12px; color: var(--ink); opacity:0.95; font-weight:600; line-height:1.35; }
+.medal-wrap{ display:flex; flex-direction:column; align-items:center; }
+.stat-circle{ width:118px; height:118px; border-radius:50%; border:2px solid var(--accent-dim); background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.10), transparent 55%), var(--panel-alt); box-shadow: inset 0 0 0 3px var(--panel), 0 3px 8px rgba(0,0,0,0.4); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:10px; cursor:pointer; text-align:center; transition: border-color .15s ease; }
+.medal-ribbon{ width:26px; height:24px; margin-top:-3px; clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%); box-shadow: 0 2px 4px rgba(0,0,0,0.35); }
+.stat-circle:hover{ border-color: var(--accent); }
+.stat-circle.edit-mode{ cursor: grab; border-style: dashed; border-color: var(--accent-dim); animation: edit-mode-wiggle 0.4s ease-in-out infinite alternate; }
+.dashboard-block{ margin-bottom: 26px; }
+.dashboard-block.edit-mode{ border: 1px dashed var(--accent-dim); border-radius: 6px; padding: 10px; }
+.block-drag-handle{ cursor: grab; user-select:none; background: var(--accent-dim); color: var(--ink); font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:8px 12px; border-radius:4px; margin-bottom:12px; text-align:center; font-weight:700; }
+.block-drag-handle:active{ cursor: grabbing; }
+.dashboard-block.drag-target{ outline: 2px dashed var(--c-gold); }
+.stat-circle.edit-mode:active{ cursor: grabbing; }
+@keyframes edit-mode-wiggle{ 0%{ transform: rotate(-0.6deg); } 100%{ transform: rotate(0.6deg); } }
+.stat-circle .st-icon{ font-size:17px; }
+.stat-circle .st-value{ font-size:16px; font-weight:700; color: var(--ink); font-family: 'Trebuchet MS', sans-serif; line-height:1.1; }
+.stat-circle .st-label{ font-size:9px; letter-spacing:0.6px; text-transform:uppercase; color: var(--accent); font-weight:700; line-height:1.2; }
 .stat-line{ font-size: 11px; color: var(--muted); margin-bottom: 16px; }
 .stat-line b{ color: var(--accent); }
 table.grid{ width:100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
@@ -232,6 +260,8 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 .trend.down{ color: var(--c-red); }
 .trend.flat{ color: var(--muted); }
 .period-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin: 14px 0 0; padding-top:16px; border-top: 1px dashed var(--border); }
+.kpi-with-rank-wrap{ display:block; }
+.rank-vertical{ display:none; }
 .kpi-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top:4px; }
 .kpi-card{ border: 1px solid var(--border); border-radius:8px; background: var(--panel-alt); padding: 14px 12px 16px; display:flex; flex-direction:column; min-width:0; }
 .kpi-card .kpi-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:6px; flex-wrap:wrap;}
@@ -251,10 +281,17 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 .btn-group{ display:flex; gap:4px; }
 .btn-group button{ background: var(--panel-alt); border:1px solid var(--border); color:var(--muted); font-family:var(--font); font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:6px 10px; cursor:pointer; border-radius:2px;}
 .btn-group button.active{ background: var(--accent-dim); color: var(--ink); border-color: var(--accent); }
-.chart-legend{ display:flex; gap:10px; font-size:11px; color:var(--muted); margin-top:8px; flex-wrap:wrap;}
+.chart-legend{ display:flex; gap:10px; font-size:11px; color:var(--muted); margin-top:8px; flex-wrap:wrap; position:relative;}
+.granular-picker-wrap{ position:relative; }
+.granular-picker-panel{ position:absolute; top:32px; right:0; background:var(--panel); border:1px solid var(--accent); border-radius:4px; padding:10px; width:240px; max-height:280px; overflow-y:auto; z-index:50; box-shadow:0 8px 24px rgba(0,0,0,0.5); }
+.granular-picker-panel .gp-group-title{ font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); font-weight:700; margin:8px 0 4px; }
+.granular-picker-panel .gp-group-title:first-child{ margin-top:0; }
+.granular-picker-panel label{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--ink); padding:3px 0; cursor:pointer; }
+.granular-picker-panel input[type=checkbox]{ accent-color: var(--accent); }
 .chart-legend i{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle;}
-.legend-item{ background:transparent; border:1px solid var(--border); color:var(--muted); font-family:var(--font); font-size:11px; padding:5px 12px; border-radius:12px; cursor:pointer; opacity:.45; }
-.legend-item.active{ color:var(--ink); border-color:var(--accent-dim); opacity:1; }
+.legend-item{ background:transparent; border:1px solid var(--border); color:var(--ink); font-family:var(--font); font-size:11px; padding:5px 12px; border-radius:12px; cursor:pointer; opacity:0.75; }
+.legend-item.active{ color:var(--ink); border-color:var(--accent); background: var(--panel-alt); font-weight:700; opacity:1; }
+#granularPickerBtn{ color: var(--accent); border-color: var(--accent-dim); opacity:1; font-weight:700; }
 .daynav{ display:flex; align-items:center; gap:10px; margin-bottom: 14px; flex-wrap:wrap;}
 .daynav button{ background: var(--panel-alt); border: 1px solid var(--border); color: var(--accent); width: 30px; height:30px; cursor:pointer; font-family: var(--font); font-size: 15px; border-radius: 2px; }
 .daynav .daylabel{ font-size: 14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; flex:1; text-align:center;}
@@ -283,11 +320,12 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 .reminder-row button:hover{ background: var(--accent-dim); color: var(--ink); }
 .reminder-row button:disabled{ cursor:not-allowed; opacity:.5; }
 .reminder-status{ font-size: 10px; color: var(--muted); }
-.sas-floating{ position:fixed; width:260px; background: var(--panel-alt); border:1px solid var(--accent-dim); border-radius:8px; padding: 12px; box-shadow:0 10px 30px rgba(0,0,0,0.55); z-index:120; display:none; }
-.sas-floating.show{ display:flex; align-items:flex-start; gap:10px; }
-.sas-floating img{ width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); flex:0 0 44px; }
-.sas-floating .txt{ font-size:12px; font-style: italic; color: var(--ink); line-height:1.4; flex:1; min-width:0; padding-right:14px; }
-.sas-floating .close{ position:absolute; top:4px; right:7px; cursor:pointer; color: var(--muted); font-size:13px; }
+.sas-floating{ position:fixed; width:320px; background: var(--panel-alt); border:1px solid var(--accent-dim); border-radius:8px; padding: 16px; box-shadow:0 10px 30px rgba(0,0,0,0.55); z-index:120; display:none; }
+.sas-floating.show{ display:flex; align-items:flex-start; gap:12px; }
+.sas-floating img{ width:62px; height:62px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); flex:0 0 62px; }
+.sas-floating .txt{ font-size:14px; font-style: italic; color: var(--ink); line-height:1.45; flex:1; min-width:0; padding-right:6px; }
+.sas-floating .close{ position:absolute; top:6px; right:8px; cursor:pointer; color: var(--ink); font-size:20px; width:26px; height:26px; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.25); border-radius:50%; }
+.sas-floating .close:hover{ background: rgba(0,0,0,0.45); }
 .modal-overlay{ position:fixed; inset:0; background:rgba(10,10,6,0.85); display:none; align-items:center; justify-content:center; z-index:100; padding:20px;}
 #confirmModal{ z-index:150; }
 .modal-overlay.show{ display:flex; }
@@ -297,8 +335,8 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 .modal-card .btnrow{ display:flex; gap:10px; justify-content:center; margin-top:14px; }
 .modal-card button{ background: var(--accent-dim); border:1px solid var(--accent); color: var(--ink); padding: 8px 18px; cursor:pointer; font-family: var(--font); letter-spacing:1px; text-transform:uppercase; font-size: 11px; font-weight:700; }
 .modal-card button.cancel{ background:transparent; border-color: var(--border); color: var(--muted); }
-.fullscreen-gold-flash{ position:fixed; inset:0; background: var(--c-gold); opacity:0; pointer-events:none; z-index:200; animation: gold-flash 1.6s ease forwards; }
-@keyframes gold-flash{ 0%{opacity:0;} 12%{opacity:0.6;} 55%{opacity:0.28;} 100%{opacity:0;} }
+.fullscreen-gold-flash{ position:fixed; inset:0; background: var(--c-gold); opacity:0; pointer-events:none; z-index:200; animation: gold-flash 5.5s ease forwards; }
+@keyframes gold-flash{ 0%{opacity:0;} 6%{opacity:0.6;} 30%{opacity:0.32;} 70%{opacity:0.32;} 100%{opacity:0;} }
 .hw-spark{ position:fixed; width:9px; height:9px; border-radius:50%; background: var(--c-gold); z-index:251; pointer-events:none; animation: hw-spark-fly 1.8s ease-out forwards; box-shadow:0 0 6px var(--c-gold); }
 @keyframes hw-spark-fly{ to{ transform: translate(var(--dx), var(--dy)) scale(0.25); opacity:0; } }
 .hell-shake{ animation: hell-shake-kf 0.5s ease-in-out; }
@@ -313,8 +351,11 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 @keyframes hell-crack-kf{ 0%{opacity:0;} 15%{opacity:0.9;} 30%{opacity:0.25;} 45%{opacity:0.8;} 100%{opacity:0;} }
 .hell-drip{ position:fixed; top:-20px; width:4px; height:16px; background:linear-gradient(#7A1B2B, transparent); border-radius:2px; z-index:179; pointer-events:none; animation-name: hell-drip-kf; animation-timing-function: linear; animation-fill-mode: forwards; }
 @keyframes hell-drip-kf{ 0%{ transform:translateY(0); opacity:0.9; } 100%{ transform:translateY(110vh); opacity:0; } }
-.fullscreen-banner{ position:fixed; top:38%; left:50%; transform:translate(-50%,-50%); background: var(--c-gold); color:#1b1b16; font-weight:700; padding:14px 28px; border-radius:4px; letter-spacing:1.5px; text-transform:uppercase; font-size:16px; z-index:201; animation: banner-fade 4s ease forwards; white-space:nowrap; box-shadow:0 6px 24px rgba(0,0,0,0.5);}
-@keyframes banner-fade{ 0%{opacity:0; transform:translate(-50%,-60%);} 12%{opacity:1; transform:translate(-50%,-50%);} 82%{opacity:1;} 100%{opacity:0;} }
+.fullscreen-banner{ position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background: var(--c-gold); color:#1b1b16; font-weight:700; padding:30px 36px; border-radius:8px; z-index:201; animation: banner-fade 5.5s ease forwards; box-shadow:0 10px 40px rgba(0,0,0,0.6); text-align:center; max-width:92vw;}
+.fullscreen-banner img{ width:90px; height:90px; border-radius:50%; object-fit:cover; border:3px solid #1b1b16; margin-bottom:14px; }
+.fullscreen-banner .big-text{ font-family:'Cinzel', serif; font-size:38px; font-weight:900; letter-spacing:2px; text-transform:uppercase; line-height:1.3; animation: banner-text-pulse 1.6s ease-in-out infinite; }
+@keyframes banner-text-pulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.045); } }
+@keyframes banner-fade{ 0%{opacity:0; transform:translate(-50%,-60%);} 8%{opacity:1; transform:translate(-50%,-50%);} 88%{opacity:1;} 100%{opacity:0;} }
 .welcome-overlay{ position:fixed; inset:0; background: var(--bg); z-index:300; display:flex; align-items:center; justify-content:center; transition: opacity .75s ease; }
 .welcome-overlay.fade-out{ opacity:0; pointer-events:none; }
 .welcome-card{ text-align:center; padding:20px; max-width:420px; }
@@ -328,8 +369,18 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 @keyframes app-fade-in{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing: 1px; margin-top: 24px; text-transform: uppercase; }
 @media (max-width: 640px){
-  .kpi-grid{ grid-template-columns: 1fr; }
-  .stat-tiles{ grid-template-columns: 1fr; }
+  #rankTrackWrap{ display:none; }
+  .kpi-with-rank-wrap{ display:flex; gap:10px; align-items:stretch; }
+  .kpi-grid{ grid-template-columns: 1fr; flex:1; margin-top:0; min-width:0; }
+  .rank-vertical{ display:flex; flex-direction:column; align-items:center; width:52px; flex-shrink:0; padding:4px 0; }
+  .rank-vertical-track{ position:relative; width:10px; flex:1; background: rgba(255,255,255,0.16); border-radius:5px; margin:20px 0; }
+  .rank-vertical-fill{ position:absolute; bottom:0; left:0; width:100%; background: var(--c-gold); border-radius:5px; }
+  .rank-vertical-marker{ position:absolute; left:50%; width:34px; height:34px; border-radius:50%; border:2px solid var(--c-gold); object-fit:cover; transform:translate(-50%,50%); box-shadow:0 2px 8px rgba(0,0,0,0.5); background:var(--panel); }
+  .rank-vertical-tick{ position:absolute; left:50%; width:8px; height:8px; border-radius:50%; transform:translate(-50%,50%); border:1.5px solid var(--muted); background: var(--panel); }
+  .rank-vertical-tick.passed{ background: var(--c-gold); border-color: var(--c-gold); }
+  .stat-tiles{ grid-template-columns: repeat(2, 1fr); gap:16px; row-gap:18px; }
+  .stat-circle{ width:130px; height:130px; }
+  .medal-wrap:nth-child(9){ grid-column: 1 / -1; justify-self:center; }
 }
 @media (max-width: 560px){
   .wrap{ padding: 0 6px; }
@@ -347,13 +398,13 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
   .panel-desc{ font-size:12.5px; }
   .train-row, .wk-row{ padding: 12px 10px; gap:6px; }
   .icon svg{ width:22px; height:22px; }
-  .appbar-left h1{ font-size: 18px; } .hero{ height: 220px; } .dash-hero{ height: 260px; }
-  .appbar{ display:grid; grid-template-columns: 1fr auto; grid-template-areas: "title today" "sub today" "rankrow today"; column-gap:12px; row-gap:2px; align-items:start; padding: 14px 12px; }
+  .appbar-left h1{ font-size: 18px; line-height:1.15; } .hero{ height: 220px; } .dash-hero{ height: 260px; }
+  .appbar{ display:grid; grid-template-columns: 1fr auto; grid-template-areas: "title today" "sub today" "rankrow today"; column-gap:12px; row-gap:1px; align-items:start; padding: 10px 12px; }
   .appbar-left{ display:contents; }
   .appbar-left h1{ grid-area: title; margin:0; }
-  .appbar-left .sub{ grid-area: sub; margin-top:1px; }
+  .appbar-left .sub{ grid-area: sub; margin-top:0; line-height:1.2; }
   .appbar-right{ display:contents; }
-  .header-rank-row{ grid-area: rankrow; margin-top:5px; gap:8px; }
+  .header-rank-row{ grid-area: rankrow; margin-top:3px; gap:8px; }
   .today-kpi{ grid-area: today; align-self:center; }
 }
 </style>
@@ -395,42 +446,66 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
     <div class="hero dash-hero" id="heroDashboard">
       <div class="rank-badge" id="rankBadge"></div>
     </div>
-    <div class="panel-body">
-      <div class="rank-track-wrap" id="rankTrackWrap"></div>
-
-      <div class="summary-card">
-        <div class="hero-score" id="heroScore"></div>
-        <div class="period-row" id="periodRow"></div>
+    <div class="panel-body" id="dashboardPanelBody">
+      <div class="dashboard-block" data-block="rank" data-key="rank" id="block-rank">
+        <div class="block-drag-handle" data-key="rank" style="display:none;">⠿ Drag to reorder — Rank Progress</div>
+        <div class="rank-track-wrap" id="rankTrackWrap"></div>
       </div>
 
-      <div class="kpi-grid" id="kpiGrid"></div>
-
-      <div class="section-title">Trends</div>
-      <div class="chart-controls">
-        <div class="btn-group" id="rangeButtons">
-          <button data-range="7d" class="active">7 Days</button>
-          <button data-range="30d">Month</button>
-          <button data-range="365d">Year</button>
-          <button data-range="all">All Time</button>
-        </div>
-        <div class="btn-group" id="typeButtons">
-          <button data-type="line" class="active">Line</button>
-          <button data-type="bar">Bar</button>
+      <div class="dashboard-block" data-block="summary" data-key="summary" id="block-summary">
+        <div class="block-drag-handle" data-key="summary" style="display:none;">⠿ Drag to reorder — Today's Progress</div>
+        <div class="summary-card">
+          <div class="hero-score" id="heroScore"></div>
+          <div class="period-row" id="periodRow"></div>
         </div>
       </div>
-      <div id="trendChart"></div>
-      <div class="chart-legend" id="chartLegend">
-        <button class="legend-item active" data-series="reading"><i style="background:var(--t-reading)"></i>Reading</button>
-        <button class="legend-item active" data-series="training"><i style="background:var(--t-training)"></i>Training</button>
-        <button class="legend-item active" data-series="workouts"><i style="background:var(--t-workouts)"></i>Workouts</button>
+
+      <div class="dashboard-block" data-block="kpi" data-key="kpi" id="block-kpi">
+        <div class="block-drag-handle" data-key="kpi" style="display:none;">⠿ Drag to reorder — Category Breakdown</div>
+        <div class="kpi-with-rank-wrap" id="kpiWithRankWrap">
+          <div class="kpi-grid" id="kpiGrid"></div>
+          <div class="rank-vertical" id="rankVertical"></div>
+        </div>
       </div>
 
-      <div class="section-title">Highlights</div>
-      <div class="panel-desc" style="margin-top:0;">Your active streaks, your record week, and your strongest activity overall.</div>
-      <div class="streak-bars" id="streakBars"></div>
-      <div class="stat-tiles" id="statTiles"></div>
+      <div class="dashboard-block" data-block="trends" data-key="trends" id="block-trends">
+        <div class="block-drag-handle" data-key="trends" style="display:none;">⠿ Drag to reorder — Trends</div>
+        <div class="section-title">Trends</div>
+        <div class="chart-controls">
+          <div class="btn-group" id="rangeButtons">
+            <button data-range="7d" class="active">7 Days</button>
+            <button data-range="30d">Month</button>
+            <button data-range="365d">Year</button>
+            <button data-range="all">All Time</button>
+          </div>
+          <div class="btn-group" id="typeButtons">
+            <button data-type="line">Line</button>
+            <button data-type="bar" class="active">Bar</button>
+          </div>
+        </div>
+        <div id="trendChart"></div>
+        <div class="chart-legend" id="chartLegend">
+          <button class="legend-item active" data-series="reading"><i style="background:var(--t-reading)"></i>Reading</button>
+          <button class="legend-item active" data-series="training"><i style="background:var(--t-training)"></i>Training</button>
+          <button class="legend-item active" data-series="workouts"><i style="background:var(--t-workouts)"></i>Workouts</button>
+          <div class="granular-picker-wrap">
+            <button class="legend-item" id="granularPickerBtn">+ Compare Activities ▾</button>
+            <div class="granular-picker-panel" id="granularPickerPanel" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
 
-      <div class="union-jack-banner" id="unionJackBanner" style="background-image:url('data:image/jpeg;base64,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');"></div>
+      <div class="dashboard-block" data-block="streaks" data-key="streaks" id="block-streaks">
+        <div class="block-drag-handle" data-key="streaks" style="display:none;">⠿ Drag to reorder — Streaks</div>
+        <div class="section-title">Streaks</div>
+        <div class="panel-desc" style="margin-top:0;">Your active streaks, your record week, and your strongest activity overall.</div>
+        <div class="streak-bars" id="streakBars"></div>
+        <div class="stat-tiles" id="statTiles" style="margin-top:34px;"></div>
+      </div>
+
+      <div style="text-align:center;margin-top:16px;">
+        <button id="editLayoutBtn" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 18px;cursor:pointer;font-family:var(--font);font-size:11px;letter-spacing:1px;text-transform:uppercase;border-radius:16px;">✏ Edit Dashboard Layout</button>
+      </div>
     </div>
   </div>
 
@@ -508,9 +583,22 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
 
   <footer>
     Synced to your account &middot; works on any device
-    <div style="margin-top:10px;"><button class="settings-btn-footer" id="settingsBtn" title="Settings">⚙ Settings</button></div>
+    <div style="margin-top:10px;display:flex;gap:10px;justify-content:center;">
+      <button class="settings-btn-footer" id="settingsBtn" title="Settings">⚙ Settings</button>
+      <button class="settings-btn-footer" id="muteBtn" title="Mute Sound">🔊 Mute Sound</button>
+    </div>
   </footer>
 </div>
+
+<svg width="0" height="0" style="position:absolute;">
+  <filter id="flagRippleFilter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="3" result="turbulence">
+      <animate attributeName="baseFrequency" dur="10s" values="0.012 0.05;0.017 0.055;0.012 0.05" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div class="union-jack-header" id="unionJackHeader" style="background-image:url('data:image/jpeg;base64,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');"></div>
 
 <div class="modal-overlay" id="confirmModal">
   <div class="modal-card">
@@ -520,6 +608,16 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
       <button id="confirmYes">Yes, Clear It</button>
       <button id="confirmNo" class="cancel">Cancel</button>
     </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="tileDetailModal">
+  <div class="modal-card">
+    <div id="tileDetailIcon" style="font-size:30px;"></div>
+    <div id="tileDetailValue" style="font-size:28px;font-weight:700;color:var(--ink);margin:6px 0;"></div>
+    <h2 id="tileDetailLabel" style="margin-top:0;"></h2>
+    <p id="tileDetailSub"></p>
+    <div class="btnrow"><button id="tileDetailClose" class="cancel">Close</button></div>
   </div>
 </div>
 
@@ -625,6 +723,9 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
       <button class="add-track-btn" id="importProgressBtn" style="margin-top:0;flex:1;">Import File</button>
     </div>
     <input type="file" id="importProgressInput" accept="application/json,.json" style="display:none;">
+    <div class="settings-label" style="color:#B3453D;">Danger Zone</div>
+    <p style="font-size:10px;color:var(--muted);margin-top:0;">Permanently erases everything on this device — all progress, streaks, XP, and settings. Cannot be undone.</p>
+    <button class="add-track-btn" id="resetAccountBtn" style="margin-top:0;width:100%;background:transparent;border-color:#B3453D;color:#B3453D;">Reset Account</button>
     <div class="btnrow"><button id="settingsClose" class="cancel">Close</button></div>
   </div>
 </div>
@@ -770,7 +871,8 @@ let data = null;
 let weekStart = getWeekStart(new Date());
 let eveningDay = new Date(); eveningDay.setHours(0,0,0,0);
 let saveTimer = null;
-let trendState = { range:'7d', type:'line', series:{reading:true, training:true, workouts:true} };
+let trendState = { range:'7d', type:'bar', series:{reading:true, training:true, workouts:true}, granular:[] };
+let dashboardEditMode = false;
 
 function getWeekStart(d){ d=new Date(d); const day=d.getDay(); d.setDate(d.getDate()-day); d.setHours(0,0,0,0); return d; }
 function dateKey(d){ const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0'); return `${y}-${m}-${day}`; }
@@ -788,7 +890,7 @@ function currentWeekDates(){ const ws = getWeekStart(new Date()); return Array.f
 
 function defaultData(){
   const today = dateKey(new Date());
-  return { version: 5, createdAt: today, celebrated: {reading:[],training:[],workouts:[]}, days: {}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null, hellWeeksCompleted: 0, bonusXPByMonth: {}, theme: 'default', openingSound: null, openingSoundName: null };
+  return { version: 5, createdAt: today, celebrated: {reading:[],training:[],workouts:[]}, days: {}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null, hellWeeksCompleted: 0, bonusXPByMonth: {}, theme: 'default', openingSound: null, openingSoundName: null, muted: false, streakRecords: {}, dashboardTileOrder: [], dashboardBlockOrder: [] };
 }
 function ensureDay(key){
   if(!data.days[key]) data.days[key] = { reading:{}, training:0, workout:{done:false, note:''}, eveningItems:[], bible:{morning:0,midday:0,night:0}, trainingTopic:null, workoutActivity:null };
@@ -850,6 +952,10 @@ async function load(){
       if(typeof data.theme !== 'string') data.theme = 'default';
       if(typeof data.openingSound === 'undefined') data.openingSound = null;
       if(typeof data.openingSoundName === 'undefined') data.openingSoundName = null;
+      if(typeof data.muted !== 'boolean') data.muted = false;
+      if(typeof data.streakRecords !== 'object' || !data.streakRecords) data.streakRecords = {};
+      if(!Array.isArray(data.dashboardTileOrder)) data.dashboardTileOrder = [];
+      if(!Array.isArray(data.dashboardBlockOrder)) data.dashboardBlockOrder = [];
     }
     else if(parsed && (parsed.version === 4 || parsed.version === 3 || parsed.version === 2)){
       data = { version:5, createdAt: parsed.createdAt || dateKey(new Date()), celebrated:{reading:[],training:[],workouts:[]}, days:{}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null };
@@ -871,6 +977,10 @@ function scheduleSave(){
 
 /* ---------- Date range helpers ---------- */
 function weekDates(){ return Array.from({length:7}, (_,i)=> addDays(weekStart,i)); }
+function viewedWeekToDateDates(){
+  const today = todayMidnight();
+  return weekDates().filter(d => d <= today);
+}
 function rangeDatesOffset(daysBack, offset){ const today = todayMidnight(); return Array.from({length:daysBack}, (_,i)=> addDays(today, -(offset + daysBack-1-i))); }
 function rangeDates(daysBack){ return rangeDatesOffset(daysBack, 0); }
 function weekToDateDates(){ const ws=getWeekStart(new Date()); const today=todayMidnight(); const out=[]; let d=new Date(ws); while(d<=today){ out.push(new Date(d)); d=addDays(d,1);} return out; }
@@ -1056,6 +1166,18 @@ function renderRankSection(){
     <div class="rank-stages">${stages}</div>
     <div class="rank-caption">${caption}</div>
   `;
+
+  const vTicks = RANKS.map((r,i)=>{
+    const tickPct = (i/(stageCount-1))*100;
+    return `<span class="rank-vertical-tick ${i<=idx?'passed':''}" style="bottom:${tickPct}%;" title="${r.name}"></span>`;
+  }).join('');
+  document.getElementById('rankVertical').innerHTML = `
+    <div class="rank-vertical-track">
+      <div class="rank-vertical-fill" style="height:${markerPct}%"></div>
+      ${vTicks}
+      <img class="rank-vertical-marker" src="${data.userAvatar || USER_AVATAR}" style="bottom:${markerPct}%">
+    </div>
+  `;
 }
 
 /* ---------- Streaks ---------- */
@@ -1199,6 +1321,42 @@ function granularTrackedItems(){
   });
   return items;
 }
+function formatStreakCount(n, unit){
+  const singular = unit==='days' ? 'day' : unit==='weeks' ? 'week' : unit;
+  return n===1 ? `1 ${singular}` : `${n} ${unit}`;
+}
+function checkStreakRecords(category){
+  if(!data.streakRecords) data.streakRecords = {};
+  const catLabelMap = {reading:'Reading', training:'Training', workouts:'Workouts'};
+  const entries = computeStreaks().filter(e=> e.category===category && e.best>=2 && e.current===e.best);
+  entries.forEach(s=>{
+    const prevBest = data.streakRecords[s.label] || 0;
+    if(s.best > prevBest){
+      data.streakRecords[s.label] = s.best;
+      scheduleSave();
+      celebrateNewRecord(s, catLabelMap[s.category]);
+    }
+  });
+}
+function celebrateNewRecord(s, catLabel){
+  const trackInfo = playCelebrationSound();
+  const shortLabel = s.label.replace(/^(Reading|Training) — /,'').replace(/^\w+ — /,'');
+  const el = document.createElement('div');
+  el.className = 'record-wobble-overlay';
+  el.innerHTML = `
+    <div class="record-wobble-title">🏆 New Record!${trackInfo && trackInfo!=='muted' ? ` 🎵` : ''}</div>
+    <div class="streak-bar-row">
+      <div class="streak-bar-label">${catLabel}: ${shortLabel}</div>
+      <div class="streak-bar-track">
+        <div class="streak-bar-fill" style="width:100%"></div>
+        <span class="streak-bar-marker" style="left:100%">⚡</span>
+        <span class="streak-bar-best-label">${s.best}</span>
+      </div>
+      <div class="streak-bar-nums">${formatStreakCount(s.current, s.unit)}</div>
+    </div>`;
+  document.body.appendChild(el);
+  setTimeout(()=> el.remove(), 3200);
+}
 function renderStreaks(){
   const barsEl = document.getElementById('streakBars');
   const tilesEl = document.getElementById('statTiles');
@@ -1221,8 +1379,9 @@ function renderStreaks(){
         <div class="streak-bar-track">
           <div class="streak-bar-fill" style="width:${pct}%"></div>
           <span class="streak-bar-marker" style="left:${pct}%">⚡</span>
+          <span class="streak-bar-best-label">${s.best}</span>
         </div>
-        <div class="streak-bar-nums"><b>${s.current}</b> / ${s.best} ${s.unit}</div>
+        <div class="streak-bar-nums">${formatStreakCount(s.current, s.unit)}</div>
       </div>`;
     }).join('');
   }
@@ -1248,23 +1407,66 @@ function renderStreaks(){
   const bestActiveStreak = allStreaksForTiles.filter(s=>s.current>0).sort((a,b)=>b.current-a.current)[0];
 
   const tiles = [];
-  if(recordWeek) tiles.push({icon:'🏆', value:`${Math.round(recordWeek.pct*100)}%`, label:'Record Week', sub:`${fmtShort(recordWeek.start)} – ${fmtShort(recordWeek.end)}`});
-  if(rates.length){ const top = [...rates].sort((a,b)=>b.pct-a.pct)[0]; tiles.push({icon:'⭐', value:`${Math.round(top.pct*100)}%`, label:'Top Performer', sub:top.label}); }
-  tiles.push({icon:'🎖️', value:`${perfectDays}`, label:'XP', sub:'1 XP per day, every applicable KPI fully logged'});
-  if(bestMonth) tiles.push({icon:'📅', value:`${bestMonth.xp} XP`, label:'Best Month', sub:`${bestMonth.label} &middot; this month ${thisMonthXP} vs last ${lastMonthXP}`});
-  if(bestEverStreak) tiles.push({icon:'🥇', value:`${bestEverStreak.best} ${bestEverStreak.unit}`, label:'Best-Ever Streak', sub:bestEverStreak.label});
-  if(bestActiveStreak) tiles.push({icon:'🔥', value:`${bestActiveStreak.current} ${bestActiveStreak.unit}`, label:'Current Best Streak', sub:bestActiveStreak.label});
-  tiles.push({icon:'💀', value:`${data.hellWeeksCompleted||0}`, label:'Hell Weeks Completed', sub: data.hellWeeksCompleted ? 'Every one of them earned' : 'None yet — the offer will come'});
-  tiles.push({icon: mostImproved.delta>=0?'📈':'📉', value:`${mostImproved.delta>=0?'▲':'▼'} ${Math.abs(Math.round(mostImproved.delta*100))}pt`, label:'Most Improved (7d)', sub:mostImproved.name});
-  tiles.push({icon:'⚠️', value:`${Math.round(needsWork.curr*100)}%`, label:'Needs Extra Work', sub:`${needsWork.name} — last 7 days`});
+  function shortName(fullLabel){ return fullLabel.replace(/^(Reading|Training) — /,'').replace(/^\w+ — /,''); }
+  if(recordWeek) tiles.push({icon:'🏆', value:`${Math.round(recordWeek.pct*100)}%`, label:'Record Week', circleLabel:'Record Wk', sub:`${fmtShort(recordWeek.start)} – ${fmtShort(recordWeek.end)}`});
+  if(rates.length){ const top = [...rates].sort((a,b)=>b.pct-a.pct)[0]; tiles.push({icon:'⭐', value:`${Math.round(top.pct*100)}%`, label:'Top Performer', circleLabel: shortName(top.label), sub:`Top performer: ${top.label}`}); }
+  tiles.push({icon:'🎖️', value:`${perfectDays}`, label:'XP', circleLabel:'XP', sub:'1 XP per day, every applicable KPI fully logged'});
+  if(bestMonth) tiles.push({icon:'📅', value:`${bestMonth.xp} XP`, label:'Best Month', circleLabel:'Best Month', sub:`${bestMonth.label} &middot; this month ${thisMonthXP} vs last ${lastMonthXP}`});
+  if(bestEverStreak) tiles.push({icon:'🥇', value:`${bestEverStreak.best} ${bestEverStreak.unit}`, label:'Best Streak', circleLabel: shortName(bestEverStreak.label), sub:`Best-ever run: ${bestEverStreak.label}`});
+  if(bestActiveStreak) tiles.push({icon:'🔥', value:`${bestActiveStreak.current} ${bestActiveStreak.unit}`, label:'Active Streak', circleLabel: shortName(bestActiveStreak.label), sub:`Currently running: ${bestActiveStreak.label}`});
+  tiles.push({icon:'💀', value:`${data.hellWeeksCompleted||0}`, label:'Hell Weeks', circleLabel:'Hell Weeks', sub: data.hellWeeksCompleted ? 'Every one of them earned' : 'None yet — the offer will come'});
+  tiles.push({icon: mostImproved.delta>=0?'📈':'📉', value:`${mostImproved.delta>=0?'▲':'▼'} ${Math.abs(Math.round(mostImproved.delta*100))}pt`, label:'Most Improved', circleLabel: shortName(mostImproved.name), sub:`Most improved: ${mostImproved.name} — last 7 days`});
+  tiles.push({icon:'⚠️', value:`${Math.round(needsWork.curr*100)}%`, label:'Needs Work', circleLabel: shortName(needsWork.name), sub:`Needs work: ${needsWork.name} — last 7 days`});
 
-  tilesEl.innerHTML = tiles.map(t=> `
-    <div class="stat-tile">
-      <div class="st-icon">${t.icon}</div>
-      <div class="st-value">${t.value}</div>
-      <div class="st-label">${t.label}</div>
-      <div class="st-sub">${t.sub}</div>
+  if(Array.isArray(data.dashboardTileOrder) && data.dashboardTileOrder.length){
+    tiles.sort((a,b)=>{
+      let ia = data.dashboardTileOrder.indexOf(a.label); if(ia===-1) ia = 999;
+      let ib = data.dashboardTileOrder.indexOf(b.label); if(ib===-1) ib = 999;
+      return ia-ib;
+    });
+  }
+
+  const RIBBON_PALETTE = ['#7A1B2B','#1B2A4A','#5E6B3D','#8B6F3D','#4A0E4E','#2F4858','#B3453D','#3D3D26','#6B1220','#1E3A5F','#3D2F1B','#264D3B'];
+  function hashLabel(str){ let h=0; for(let i=0;i<str.length;i++){ h=((h<<5)-h+str.charCodeAt(i))|0; } return Math.abs(h); }
+  function ribbonStripes(label){
+    const h = hashLabel(label);
+    const c1 = RIBBON_PALETTE[h % RIBBON_PALETTE.length];
+    const c2 = RIBBON_PALETTE[(h >>> 4) % RIBBON_PALETTE.length];
+    const c3 = RIBBON_PALETTE[(h >>> 9) % RIBBON_PALETTE.length];
+    return `repeating-linear-gradient(90deg, ${c1} 0px 5px, ${c2} 5px 9px, ${c3} 9px 12px, ${c2} 12px 16px)`;
+  }
+  window.__dashboardTiles = tiles;
+  tilesEl.innerHTML = tiles.map((t,i)=> `
+    <div class="medal-wrap">
+      <div class="stat-circle ${dashboardEditMode?'edit-mode':''}" data-idx="${i}" data-label="${t.label}" data-key="${t.label}">
+        <div class="st-icon">${t.icon}</div>
+        <div class="st-value">${t.value}</div>
+        <div class="st-label">${t.circleLabel || t.label}</div>
+      </div>
+      <div class="medal-ribbon" style="background:${ribbonStripes(t.label)};"></div>
     </div>`).join('');
+  if(dashboardEditMode){
+    wireDragSwap(tilesEl, '.stat-circle', '.stat-circle', (labelA, labelB)=>{
+      const order = tiles.map(t=>t.label);
+      const ia = order.indexOf(labelA), ib = order.indexOf(labelB);
+      if(ia===-1 || ib===-1) return false;
+      [order[ia], order[ib]] = [order[ib], order[ia]];
+      data.dashboardTileOrder = order;
+      scheduleSave();
+      return true;
+    }, renderStreaks);
+  } else {
+    tilesEl.querySelectorAll('.stat-circle').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const t = window.__dashboardTiles[parseInt(el.dataset.idx)];
+        document.getElementById('tileDetailIcon').textContent = t.icon;
+        document.getElementById('tileDetailValue').textContent = t.value;
+        document.getElementById('tileDetailLabel').textContent = t.label;
+        document.getElementById('tileDetailSub').innerHTML = t.sub;
+        document.getElementById('tileDetailModal').classList.add('show');
+      });
+    });
+  }
 }
 function pctColor(pct){
   const p = Math.round(pct*100);
@@ -1283,6 +1485,7 @@ function render(){
   updateTodayKpiWidget();
   updateHeaderRank();
   updateHellWeekBanner();
+  updateMuteButton();
   renderDashboard();
   renderReading();
   renderTraining();
@@ -1291,6 +1494,29 @@ function render(){
   renderEveningTimeline();
   renderTabPcts();
 }
+function updateMuteButton(){
+  const btn = document.getElementById('muteBtn');
+  if(!btn) return;
+  btn.textContent = data.muted ? '🔇 Unmute Sound' : '🔊 Mute Sound';
+}
+document.getElementById('muteBtn').addEventListener('click', ()=>{
+  data.muted = !data.muted;
+  scheduleSave();
+  updateMuteButton();
+  if(data.muted && currentlyPlayingAudio){
+    fadeOutAndStop(currentlyPlayingAudio, 800);
+    currentlyPlayingAudio = null;
+  }
+});
+document.getElementById('editLayoutBtn').addEventListener('click', ()=>{
+  dashboardEditMode = !dashboardEditMode;
+  const btn = document.getElementById('editLayoutBtn');
+  btn.textContent = dashboardEditMode ? '✓ Done Editing' : '✏ Edit Dashboard Layout';
+  btn.style.borderColor = dashboardEditMode ? 'var(--accent)' : 'var(--border)';
+  btn.style.color = dashboardEditMode ? 'var(--accent)' : 'var(--muted)';
+  renderStreaks();
+  applyDashboardEditModeUI();
+});
 function updateHellWeekBanner(){
   const banner = document.getElementById('hellWeekBannerWrap');
   if(isHellWeekActiveNow()){
@@ -1677,7 +1903,7 @@ function buildContextualCandidates(tabKey){
   return candidates;
 }
 function maybeShowQuote(tabKey){
-  if(Math.random() > 0.5){ hideSasFloating(); return; }
+  if(Math.random() > 0.25){ hideSasFloating(); return; }
   const generic = QUOTES[tabKey] || QUOTES.dashboard;
   const contextual = buildContextualCandidates(tabKey);
   const pool = [...generic, ...contextual, ...contextual];
@@ -1697,6 +1923,9 @@ function maybeShowQuote(tabKey){
 }
 
 /* ---------- Custom confirm modal ---------- */
+document.getElementById('tileDetailClose').addEventListener('click', ()=>{
+  document.getElementById('tileDetailModal').classList.remove('show');
+});
 function showConfirm(message, onYes){
   const overlay = document.getElementById('confirmModal');
   document.getElementById('confirmText').textContent = message;
@@ -1737,21 +1966,23 @@ document.querySelectorAll('.clear-btn[data-clear]').forEach(btn=>{
 function miniRing(pct){
   const r=10, cx=13, cy=13, c=2*Math.PI*r;
   const offset = c*(1-Math.min(1,pct));
+  const ringColor = pct >= 1 ? '#1E7A42' : pctColor(pct);
   return `<svg width="20" height="20" viewBox="0 0 26 26">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--border)" stroke-width="4"/>
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${pctColor(pct)}" stroke-width="4" stroke-linecap="round"
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${ringColor}" stroke-width="4" stroke-linecap="round"
       stroke-dasharray="${c}" stroke-dashoffset="${offset}" transform="rotate(-90 ${cx} ${cy})"/></svg>`;
 }
 function renderTabPcts(){
-  const mtd = monthToDateDates();
-  const map = { reading: readingPct(mtd), training: trainingPct(mtd), workouts: workoutPct(mtd) };
+  const dates = viewedWeekToDateDates();
+  const map = { reading: readingPct(dates), training: trainingPct(dates), workouts: workoutPct(dates) };
   const hellWeekActive = isHellWeekActiveNow();
   document.querySelectorAll('.tab').forEach(tab=>{
     const key = tab.dataset.tab;
     if(key === 'evening' || key === 'dashboard'){ tab.innerHTML = `<span>${tab.dataset.label}</span>`; return; }
     if(key === 'workouts' && hellWeekActive){ tab.innerHTML = `<span class="hellweek-dramatic">🔥 HELL WEEK</span>`; return; }
     const pct = map[key];
-    tab.innerHTML = `${miniRing(pct)}<span>${tab.dataset.label}</span><span class="tab-pct">${Math.round(pct*100)}%</span>`;
+    const pctTextColor = pct >= 1 ? 'color:#1E7A42;' : '';
+    tab.innerHTML = `${miniRing(pct)}<span>${tab.dataset.label}</span><span class="tab-pct" style="${pctTextColor}">${Math.round(pct*100)}%</span>`;
   });
 }
 
@@ -1834,6 +2065,7 @@ function renderReading(){
       day.reading[el.dataset.book] = (day.reading[el.dataset.book] + 5) % (READING_TARGET + 5);
       scheduleSave(); renderReading(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('reading');
     });
   });
   table.querySelectorAll('.fill-row-btn').forEach(el=>{
@@ -1842,6 +2074,7 @@ function renderReading(){
       ALL_BOOKS.forEach(b=> day.reading[b] = READING_TARGET);
       scheduleSave(); renderReading(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('reading');
     });
   });
   const wtd = weekToDateDates(), mtd = monthToDateDates(), all = allTimeDates();
@@ -1885,6 +2118,7 @@ function renderBible(){
       day.bible[slot] = (day.bible[slot] + 1) % (target + 1);
       scheduleSave(); renderBible(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('reading');
     });
   });
   table.querySelectorAll('.fill-row-btn').forEach(el=>{
@@ -1895,6 +2129,7 @@ function renderBible(){
       day.bible.morning = t.morning; day.bible.midday = t.midday; day.bible.night = t.night;
       scheduleSave(); renderBible(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('reading');
     });
   });
   const wtd = weekToDateDates(), mtd = monthToDateDates(), all = allTimeDates();
@@ -1961,6 +2196,7 @@ function renderTraining(){
       day.training = (day.training + 10) % (TRAINING_TARGET + 10);
       scheduleSave(); renderTraining(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('training');
     });
   });
   wireDragSwap(list, '.train-row', '.drag-handle', (keyA, keyB)=>{
@@ -2189,6 +2425,7 @@ function renderWorkouts(){
       day.workout.done = !day.workout.done;
       scheduleSave(); renderWorkouts(); renderTabPcts(); renderDashboard(); updateTodayKpiWidget();
       checkWeeklyCelebration();
+      checkStreakRecords('workouts');
     });
   });
   wireDragSwap(list, '.wk-row', '.drag-handle', (keyA, keyB)=>{
@@ -2402,10 +2639,14 @@ function gaugePct(label, pct, size){
   const largeArcBg = (endAngle-startAngle) > 180 ? 1 : 0;
   const largeArcVal = (angle-startAngle) > 180 ? 1 : 0;
   const sw = Math.max(5, size*0.09);
+  const isComplete = pct >= 1;
+  const arcColor = isComplete ? '#1E7A42' : pctColor(pct);
+  const outline = isComplete ? `<path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="var(--c-gold)" stroke-width="${sw+4}" stroke-linecap="round"/>` : '';
   return `<div class="gauge" style="width:${size+16}px;">
     <svg viewBox="0 0 ${size} ${H}" width="${size}" height="${H}">
       <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcBg} 1 ${e[0]} ${e[1]}" fill="none" stroke="var(--border)" stroke-width="${sw}" stroke-linecap="round"/>
-      <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="${pctColor(pct)}" stroke-width="${sw}" stroke-linecap="round"/>
+      ${outline}
+      <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="${arcColor}" stroke-width="${sw}" stroke-linecap="round"/>
       <text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-size="${size*0.16}" font-weight="700" fill="var(--ink)">${Math.round(pct*100)}%</text>
     </svg>
     <div class="label">${label}</div>
@@ -2416,10 +2657,14 @@ function gaugeCount(label, value, total){
   const {r,cx,cy,s,e,v,startAngle,endAngle,angle} = arcCoords(pct,size);
   const largeArcBg = (endAngle-startAngle) > 180 ? 1 : 0;
   const largeArcVal = (angle-startAngle) > 180 ? 1 : 0;
+  const isComplete = pct >= 1;
+  const arcColor = isComplete ? '#1E7A42' : pctColor(pct);
+  const outline = isComplete ? `<path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="var(--c-gold)" stroke-width="11" stroke-linecap="round"/>` : '';
   return `<div class="gauge">
     <svg viewBox="0 0 ${size} ${H}" width="${size}" height="${H}">
       <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcBg} 1 ${e[0]} ${e[1]}" fill="none" stroke="var(--border)" stroke-width="7" stroke-linecap="round"/>
-      <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="${pctColor(pct)}" stroke-width="7" stroke-linecap="round"/>
+      ${outline}
+      <path d="M ${s[0]} ${s[1]} A ${r} ${r} 0 ${largeArcVal} 1 ${v[0]} ${v[1]}" fill="none" stroke="${arcColor}" stroke-width="7" stroke-linecap="round"/>
       <text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="var(--ink)">${value}/${total}</text>
     </svg>
     <div class="label">${label}</div>
@@ -2440,18 +2685,53 @@ function trendHtml(curr, prev){
   if(pts > 0) return `<span class="trend up">▲ ${pts}pt</span>`;
   return `<span class="trend down">▼ ${Math.abs(pts)}pt</span>`;
 }
+const DASHBOARD_BLOCK_DEFAULT_ORDER = ['rank','summary','kpi','trends','streaks'];
+function applyDashboardBlockOrder(){
+  let order = (data.dashboardBlockOrder && data.dashboardBlockOrder.length) ? data.dashboardBlockOrder.slice() : DASHBOARD_BLOCK_DEFAULT_ORDER.slice();
+  DASHBOARD_BLOCK_DEFAULT_ORDER.forEach(id=>{ if(!order.includes(id)) order.push(id); });
+  const container = document.getElementById('dashboardPanelBody');
+  if(!container) return;
+  order.forEach(id=>{
+    const el = document.getElementById('block-'+id);
+    if(el) container.appendChild(el);
+  });
+  const editBtnWrap = container.querySelector('#editLayoutBtn')?.parentElement;
+  if(editBtnWrap) container.appendChild(editBtnWrap);
+}
+function applyDashboardEditModeUI(){
+  document.querySelectorAll('.dashboard-block').forEach(el=>{
+    el.classList.toggle('edit-mode', dashboardEditMode);
+    const handle = el.querySelector('.block-drag-handle');
+    if(handle) handle.style.display = dashboardEditMode ? 'block' : 'none';
+  });
+  if(dashboardEditMode){
+    wireDragSwap(document.getElementById('dashboardPanelBody'), '.dashboard-block', '.block-drag-handle', (keyA, keyB)=>{
+      let order = (data.dashboardBlockOrder && data.dashboardBlockOrder.length) ? data.dashboardBlockOrder.slice() : DASHBOARD_BLOCK_DEFAULT_ORDER.slice();
+      DASHBOARD_BLOCK_DEFAULT_ORDER.forEach(id=>{ if(!order.includes(id)) order.push(id); });
+      const ia = order.indexOf(keyA), ib = order.indexOf(keyB);
+      if(ia===-1 || ib===-1) return false;
+      [order[ia], order[ib]] = [order[ib], order[ia]];
+      data.dashboardBlockOrder = order;
+      scheduleSave();
+      return true;
+    }, ()=>{ applyDashboardBlockOrder(); applyDashboardEditModeUI(); });
+  }
+}
 function renderDashboard(){
   const wtd = weekToDateDates(), mtd = monthToDateDates(), all = allTimeDates();
   const day7 = rangeDates(7), prior7 = rangeDatesOffset(7,7);
 
+  applyDashboardBlockOrder();
+  applyDashboardEditModeUI();
   renderRankSection();
 
   document.getElementById('heroScore').innerHTML =
-    gaugePct('', combinedPct(all), 280) + `<div class="big-label">All-Time Combined Score</div>`;
+    gaugePct('', combinedPct([new Date()]), 280) + `<div class="big-label">Today's Progress</div>`;
 
   document.getElementById('periodRow').innerHTML =
-    gaugePct('Week to Date', combinedPct(wtd), 130) +
-    gaugePct('Month to Date', combinedPct(mtd), 130);
+    gaugePct('Week to Date', combinedPct(wtd), 108) +
+    gaugePct('Month to Date', combinedPct(mtd), 108) +
+    gaugePct('All Time', combinedPct(all), 108);
 
   const cats = [
     {key:'reading', name:'Reading', fn: readingPct},
@@ -2493,20 +2773,38 @@ function monthsSinceStart(){
   const months = (today.getFullYear()-startMonth.getFullYear())*12 + (today.getMonth()-startMonth.getMonth()) + 1;
   return Math.max(1, months);
 }
+const GRANULAR_COLORS = ['#E3C042','#5B85B8','#9AC46A','#B3453D','#8B6F3D','#C97A3D','#C4923F','#6B9B5E'];
+function selectedGranularItems(){
+  const all = granularTrackedItems();
+  return trendState.granular.map(label=> all.find(g=>g.label===label)).filter(Boolean);
+}
 function getTrendSeries(range){
+  const selected = selectedGranularItems();
   if(range === '365d'){
-    return monthsBack(12).map(m=> ({ label:m.label, reading:readingPct(m.dates), training:trainingPct(m.dates), workouts:workoutPct(m.dates) }));
+    return monthsBack(12).map(m=>{
+      const point = { label:m.label, reading:readingPct(m.dates), training:trainingPct(m.dates), workouts:workoutPct(m.dates) };
+      selected.forEach(g=> point[g.label] = g.pct(m.dates));
+      return point;
+    });
   }
   if(range === 'all'){
     const n = monthsSinceStart();
-    return monthsBack(n, n>12).map(m=> ({ label:m.label, reading:readingPct(m.dates), training:trainingPct(m.dates), workouts:workoutPct(m.dates) }));
+    return monthsBack(n, n>12).map(m=>{
+      const point = { label:m.label, reading:readingPct(m.dates), training:trainingPct(m.dates), workouts:workoutPct(m.dates) };
+      selected.forEach(g=> point[g.label] = g.pct(m.dates));
+      return point;
+    });
   }
   const n = range==='30d' ? 30 : 7;
   const dates = rangeDates(n);
-  return dates.map((d,i)=>({
-    label: n===7 ? DAY_LABELS[weekdayIdx(d)] : (n>15 && i%5!==0 && i!==n-1 ? '' : String(d.getDate())),
-    reading: readingPct([d]), training: trainingPct([d]), workouts: workoutPct([d])
-  }));
+  return dates.map((d,i)=>{
+    const point = {
+      label: n===7 ? DAY_LABELS[weekdayIdx(d)] : (n>15 && i%5!==0 && i!==n-1 ? '' : String(d.getDate())),
+      reading: readingPct([d]), training: trainingPct([d]), workouts: workoutPct([d])
+    };
+    selected.forEach(g=> point[g.label] = g.pct([d]));
+    return point;
+  });
 }
 function renderTrendChart(){
   const points = getTrendSeries(trendState.range);
@@ -2515,6 +2813,9 @@ function renderTrendChart(){
   const n = points.length;
   const catKeys = ['reading','training','workouts'].filter(k=> trendState.series[k]);
   const colors = {reading:'var(--t-reading)', training:'var(--t-training)', workouts:'var(--t-workouts)'};
+  const selected = selectedGranularItems();
+  const allKeys = [...catKeys, ...selected.map(g=>g.label)];
+  selected.forEach((g,i)=>{ colors[g.label] = GRANULAR_COLORS[i % GRANULAR_COLORS.length]; });
   let svg = `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none">`;
   [0,25,50,75,100].forEach(p=>{
     const y = padT + innerH*(1-p/100);
@@ -2522,18 +2823,18 @@ function renderTrendChart(){
     svg += `<text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="9" fill="var(--muted)">${p}</text>`;
   });
   if(trendState.type==='line'){
-    catKeys.forEach(key=>{
-      const pts = points.map((p,i)=>[ padL + (n===1?innerW/2:innerW*i/(n-1)), padT + innerH*(1-p[key]) ]);
+    allKeys.forEach(key=>{
+      const pts = points.map((p,i)=>[ padL + (n===1?innerW/2:innerW*i/(n-1)), padT + innerH*(1-(p[key]||0)) ]);
       const path = pts.map((pt,i)=> (i===0?'M':'L')+pt[0].toFixed(1)+','+pt[1].toFixed(1)).join(' ');
       svg += `<path d="${path}" fill="none" stroke="${colors[key]}" stroke-width="2.5"/>`;
       pts.forEach(pt=>{ svg+=`<circle cx="${pt[0]}" cy="${pt[1]}" r="2.6" fill="${colors[key]}"/>`; });
     });
   } else {
     const groupW = innerW/n;
-    const barW = groupW/(catKeys.length+1);
+    const barW = groupW/(allKeys.length+1);
     points.forEach((p,i)=>{
-      catKeys.forEach((key,ci)=>{
-        const barH = innerH*p[key];
+      allKeys.forEach((key,ci)=>{
+        const barH = innerH*(p[key]||0);
         const x = padL + groupW*i + barW*(ci+0.5);
         const y = padT+innerH-barH;
         svg += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(barW*0.8).toFixed(1)}" height="${barH.toFixed(1)}" fill="${colors[key]}"/>`;
@@ -2563,11 +2864,45 @@ document.getElementById('typeButtons').addEventListener('click', (e)=>{
   renderTrendChart();
 });
 document.getElementById('chartLegend').addEventListener('click', (e)=>{
-  const btn = e.target.closest('.legend-item'); if(!btn) return;
+  const btn = e.target.closest('.legend-item'); if(!btn || !btn.dataset.series) return;
   const key = btn.dataset.series;
   trendState.series[key] = !trendState.series[key];
   btn.classList.toggle('active', trendState.series[key]);
   renderTrendChart();
+});
+function renderGranularPicker(){
+  const items = granularTrackedItems();
+  const groups = { Reading: [], Training: [], Workouts: [] };
+  items.forEach(it=>{
+    if(it.label.startsWith('Reading')) groups.Reading.push(it);
+    else if(it.label.startsWith('Training')) groups.Training.push(it);
+    else groups.Workouts.push(it);
+  });
+  const panel = document.getElementById('granularPickerPanel');
+  panel.innerHTML = Object.keys(groups).map(g=> `
+    <div class="gp-group-title">${g}</div>
+    ${groups[g].map(it=> `<label><input type="checkbox" data-label="${it.label}" ${trendState.granular.includes(it.label)?'checked':''}> ${it.label.split(' — ')[1] || it.label}</label>`).join('')}
+  `).join('');
+}
+document.getElementById('granularPickerBtn').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const panel = document.getElementById('granularPickerPanel');
+  const isOpen = panel.style.display !== 'none';
+  if(isOpen){ panel.style.display = 'none'; return; }
+  renderGranularPicker();
+  panel.style.display = 'block';
+});
+document.getElementById('granularPickerPanel').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const cb = e.target.closest('input[type=checkbox]'); if(!cb) return;
+  const label = cb.dataset.label;
+  if(cb.checked){ if(!trendState.granular.includes(label)) trendState.granular.push(label); }
+  else{ trendState.granular = trendState.granular.filter(l=>l!==label); }
+  renderTrendChart();
+});
+document.addEventListener('click', ()=>{
+  const panel = document.getElementById('granularPickerPanel');
+  if(panel) panel.style.display = 'none';
 });
 
 /* ---------- Per-tab full-screen gold celebration ---------- */
@@ -2621,15 +2956,51 @@ function playVictoryFanfare2(){
     });
   }catch(e){ /* audio not available */ }
 }
+let currentlyPlayingAudio = null;
+function fadeInAudioElement(audio, duration, targetVolume){
+  audio.volume = 0;
+  const steps = 30;
+  const stepTime = duration/steps;
+  let step = 0;
+  const timer = setInterval(()=>{
+    step++;
+    audio.volume = Math.min(targetVolume, (step/steps)*targetVolume);
+    if(step>=steps) clearInterval(timer);
+  }, stepTime);
+}
+function fadeOutAndStop(audio, duration){
+  if(!audio) return;
+  const steps = 20;
+  const stepTime = duration/steps;
+  const startVol = audio.volume;
+  let step = 0;
+  const timer = setInterval(()=>{
+    step++;
+    audio.volume = Math.max(0, startVol*(1-step/steps));
+    if(step>=steps){ clearInterval(timer); try{ audio.pause(); }catch(e){} }
+  }, stepTime);
+}
 function playAppOpenSting(){
+  if(data.muted) return;
   if(data.openingSound){
-    try{ new Audio(data.openingSound).play().catch(()=>{}); return; }catch(e){}
+    try{
+      const audio = new Audio(data.openingSound);
+      audio.volume = 0;
+      currentlyPlayingAudio = audio;
+      audio.play().then(()=> fadeInAudioElement(audio, 2000, 1)).catch(()=>{});
+      return;
+    }catch(e){}
   }
   try{
     const Ctx = window.AudioContext || window.webkitAudioContext;
     if(!Ctx) return;
     const ctx = new Ctx();
     const t0 = ctx.currentTime + 0.05;
+
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0, t0);
+    masterGain.gain.linearRampToValueAtTime(1, t0 + 1.4);
+    masterGain.connect(ctx.destination);
 
     function drumHit(time, volume, pitch){
       const bufferSize = Math.floor(ctx.sampleRate * 0.15);
@@ -2643,7 +3014,7 @@ function playAppOpenSting(){
       const noiseGain = ctx.createGain();
       noiseGain.gain.setValueAtTime(volume*0.45, time);
       noiseGain.gain.exponentialRampToValueAtTime(0.001, time+0.15);
-      noise.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(ctx.destination);
+      noise.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(masterGain);
       noise.start(time); noise.stop(time+0.15);
 
       const osc = ctx.createOscillator();
@@ -2653,7 +3024,7 @@ function playAppOpenSting(){
       const oscGain = ctx.createGain();
       oscGain.gain.setValueAtTime(volume, time);
       oscGain.gain.exponentialRampToValueAtTime(0.001, time+0.26);
-      osc.connect(oscGain); oscGain.connect(ctx.destination);
+      osc.connect(oscGain); oscGain.connect(masterGain);
       osc.start(time); osc.stop(time+0.28);
     }
 
@@ -2667,6 +3038,7 @@ function playAppOpenSting(){
   }catch(e){ /* audio not available */ }
 }
 function playCelebrationSound(){
+  if(data.muted) return 'muted';
   const customs = Array.isArray(data.customTracks) ? data.customTracks : [];
   const options = ['synth1','synth2', ...customs.map((_,i)=>'custom:'+i)];
   const pick = options[Math.floor(Math.random()*options.length)];
@@ -2677,6 +3049,7 @@ function playCelebrationSound(){
   if(track){
     try{
       const audio = new Audio(track.dataUrl);
+      currentlyPlayingAudio = audio;
       audio.play().catch(()=>{});
       setTimeout(()=>{ try{ audio.pause(); }catch(e){} }, 3000);
     }catch(e){}
@@ -2835,6 +3208,16 @@ document.getElementById('importProgressInput').addEventListener('change', (e)=>{
   };
   reader.readAsText(file);
 });
+document.getElementById('resetAccountBtn').addEventListener('click', ()=>{
+  document.getElementById('settingsModal').classList.remove('show');
+  showConfirm('WARNING: this will permanently erase every bit of progress on this device — all XP, streaks, rank, history, and settings. This cannot be undone. Are you absolutely sure?', ()=>{
+    try{ localStorage.removeItem('ledger-data'); }catch(e){}
+    if(window.storage && typeof window.storage.delete === 'function'){
+      try{ window.storage.delete('ledger-data', false); }catch(e){}
+    }
+    location.reload();
+  });
+});
 document.getElementById('addTrackBtn').addEventListener('click', ()=>{
   document.getElementById('addTrackInput').click();
 });
@@ -2861,16 +3244,16 @@ function checkWeeklyCelebration(){
   if(combinedPct(days) < 0.999) return;
   data.celebratedWeeks.push(wKey);
   scheduleSave();
-  const trackInfo = playCelebrationSound();
+  playCelebrationSound();
   const flash = document.createElement('div');
   flash.className = 'fullscreen-gold-flash';
   document.body.appendChild(flash);
-  setTimeout(()=> flash.remove(), 1700);
+  setTimeout(()=> flash.remove(), 5500);
   const banner = document.createElement('div');
   banner.className = 'fullscreen-banner';
-  banner.innerHTML = `💯 Perfect Week!<div style="font-size:10px;letter-spacing:0.5px;text-transform:none;font-weight:400;margin-top:6px;opacity:0.85;">🎵 ${trackInfo}</div>`;
+  banner.innerHTML = `<img src="${COLONEL_FULL}" alt=""><div class="big-text">100 / 100 Week<br>Congratulations!</div>`;
   document.body.appendChild(banner);
-  setTimeout(()=> banner.remove(), 4000);
+  setTimeout(()=> banner.remove(), 5500);
 }
 
 /* ---------- Nav ---------- */
@@ -2956,6 +3339,19 @@ function finishWelcome(){
   document.querySelector('.wrap').classList.add('app-fade-in');
   setTimeout(()=> overlay.remove(), 800);
   maybeOfferChallenge();
+  if(currentlyPlayingAudio && !currentlyPlayingAudio.paused){
+    const audio = currentlyPlayingAudio;
+    const duckToVol = Math.max(0, audio.volume*0.35);
+    const steps = 15;
+    let step = 0;
+    const startVol = audio.volume;
+    const duckTimer = setInterval(()=>{
+      step++;
+      audio.volume = startVol + (duckToVol-startVol)*(step/steps);
+      if(step>=steps) clearInterval(duckTimer);
+    }, 60);
+    setTimeout(()=>{ fadeOutAndStop(audio, 2000); }, 4000);
+  }
 }
 function showWelcome(){
   playAppOpenSting();
