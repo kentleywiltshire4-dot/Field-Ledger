@@ -378,6 +378,10 @@ td.rowlabel.today-col{ border-left: 4px solid var(--accent); }
 .app-fade-in{ animation: app-fade-in 0.9s ease; }
 @keyframes app-fade-in{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing: 1px; margin-top: 24px; text-transform: uppercase; }
+.memory-bar-wrap{ max-width:280px; margin:16px auto 0; }
+.memory-bar-track{ height:5px; background:rgba(255,255,255,0.15); border-radius:3px; overflow:hidden; }
+.memory-bar-fill{ height:100%; width:0%; background:var(--accent); border-radius:3px; transition:width .3s ease; }
+.memory-bar-label{ font-size:9px; color:var(--muted); margin-top:6px; text-align:center; letter-spacing:0.5px; text-transform:none; }
 @media (max-width: 640px){
   #block-rank{ display:none; margin:0; }
   .kpi-with-rank-wrap{ display:flex; gap:16px; align-items:stretch; }
@@ -609,6 +613,10 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
     <div style="margin-top:10px;display:flex;gap:10px;justify-content:center;">
       <button class="settings-btn-footer" id="settingsBtn" title="Settings">⚙ Settings</button>
       <button class="settings-btn-footer" id="muteBtn" title="Mute Sound">🔊 Mute Sound</button>
+    </div>
+    <div class="memory-bar-wrap">
+      <div class="memory-bar-track"><div class="memory-bar-fill"></div></div>
+      <div class="memory-bar-label"></div>
     </div>
   </footer>
 </div>
@@ -912,7 +920,7 @@ function currentWeekDates(){ const ws = getWeekStart(new Date()); return Array.f
 
 function defaultData(){
   const today = dateKey(new Date());
-  return { version: 5, createdAt: today, celebrated: {reading:[],training:[],workouts:[]}, days: {}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null, hellWeeksCompleted: 0, bonusXPByMonth: {}, theme: 'default', openingSound: null, openingSoundName: null, muted: false, streakRecords: {}, dashboardTileOrder: [], dashboardBlockOrder: [] };
+  return { version: 5, createdAt: today, celebrated: {reading:[],training:[],workouts:[]}, days: {}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null, hellWeeksCompleted: 0, bonusXPByMonth: {}, theme: 'default', openingSound: null, openingSoundName: null, muted: false, streakRecords: {}, dashboardTileOrder: [], dashboardBlockOrder: [], lastModified: Date.now() };
 }
 function ensureDay(key){
   if(!data.days[key]) data.days[key] = { reading:{}, training:0, workout:{done:false, note:''}, eveningItems:[], bible:{morning:0,midday:0,night:0}, trainingTopic:null, workoutActivity:null };
@@ -978,6 +986,7 @@ async function load(){
       if(typeof data.streakRecords !== 'object' || !data.streakRecords) data.streakRecords = {};
       if(!Array.isArray(data.dashboardTileOrder)) data.dashboardTileOrder = [];
       if(!Array.isArray(data.dashboardBlockOrder)) data.dashboardBlockOrder = [];
+      if(typeof data.lastModified !== 'number') data.lastModified = Date.now();
     }
     else if(parsed && (parsed.version === 4 || parsed.version === 3 || parsed.version === 2)){
       data = { version:5, createdAt: parsed.createdAt || dateKey(new Date()), celebrated:{reading:[],training:[],workouts:[]}, days:{}, customTracks: [], challenge: null, lastChallengeOffer: null, bonusXP: 0, celebratedWeeks: [], lastHellWeekVariant: null, userName: null, userAvatar: null };
@@ -994,11 +1003,13 @@ async function load(){
 }
 function scheduleSave(){
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(async ()=>{ try{ await storageSet('ledger-data', JSON.stringify(data)); }catch(e){ console.error('save failed', e); } }, 350);
+  saveTimer = setTimeout(async ()=>{ data.lastModified = Date.now(); try{ await storageSet('ledger-data', JSON.stringify(data)); }catch(e){ console.error('save failed', e); } updateMemoryBar(); }, 350);
 }
 async function saveNow(){
   clearTimeout(saveTimer);
+  data.lastModified = Date.now();
   try{ await storageSet('ledger-data', JSON.stringify(data)); }catch(e){ console.error('save failed', e); }
+  updateMemoryBar();
 }
 let isResetting = false;
 window.addEventListener('beforeunload', ()=>{
@@ -1518,6 +1529,36 @@ function pctColor(pct){
 }
 
 /* ---------- Render root ---------- */
+function computeDataFootprint(){
+  let points = 0;
+  Object.keys(data.days||{}).forEach(k=>{
+    const d = data.days[k];
+    if(d.reading){ ALL_BOOKS.forEach(b=>{ if(d.reading[b]>0) points++; }); }
+    if(d.bible){ ['morning','midday','night'].forEach(s=>{ if(d.bible[s]>0) points++; }); }
+    if(d.training>0) points++;
+    if(d.workout && d.workout.done) points++;
+    if(Array.isArray(d.eveningItems)) points += d.eveningItems.length;
+  });
+  points += (Array.isArray(data.customTracks) ? data.customTracks.length : 0) * 3;
+  if(data.userAvatar) points += 5;
+  if(data.userName) points += 2;
+  if(data.theme && data.theme !== 'default') points += 2;
+  if(data.openingSound) points += 5;
+  points += (data.hellWeeksCompleted||0) * 10;
+  points += Object.keys(data.streakRecords||{}).length * 2;
+  return points;
+}
+function updateMemoryBar(){
+  const fillEls = document.querySelectorAll('.memory-bar-fill');
+  const labelEls = document.querySelectorAll('.memory-bar-label');
+  if(!fillEls.length) return;
+  const points = computeDataFootprint();
+  const pct = Math.min(100, Math.round((points/500)*100));
+  const lm = data.lastModified ? new Date(data.lastModified) : null;
+  const lmText = lm ? lm.toLocaleString(undefined,{month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}) : 'never';
+  fillEls.forEach(el=> el.style.width = pct + '%');
+  labelEls.forEach(el=> el.textContent = `${points.toLocaleString()} data points · Last saved ${lmText}`);
+}
 function render(){
   document.getElementById('weekRange').textContent = `${fmtShort(weekStart)} – ${fmtShort(addDays(weekStart,6))}`;
   applyHeroImages();
@@ -1525,6 +1566,7 @@ function render(){
   updateHeaderRank();
   updateHellWeekBanner();
   updateMuteButton();
+  updateMemoryBar();
   renderDashboard();
   renderReading();
   renderTraining();
