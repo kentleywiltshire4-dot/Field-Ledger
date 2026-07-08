@@ -372,8 +372,8 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
   #rankTrackWrap{ display:none; }
   .kpi-with-rank-wrap{ display:flex; gap:10px; align-items:stretch; }
   .kpi-grid{ grid-template-columns: 1fr; flex:1; margin-top:0; min-width:0; }
-  .rank-vertical{ display:flex; flex-direction:row; align-items:stretch; width:78px; flex-shrink:0; padding:4px 0; gap:3px; }
-  .rank-vertical-labels{ position:relative; width:24px; flex-shrink:0; }
+  .rank-vertical{ display:flex; flex-direction:row; align-items:stretch; width:40px; flex-shrink:0; padding:4px 0; gap:2px; }
+  .rank-vertical-labels{ position:relative; width:15px; flex-shrink:0; }
   .rank-vertical-label-item{ position:absolute; left:0; width:100%; display:flex; flex-direction:column; align-items:center; transform: translateY(50%); }
   .rank-vertical-label-text{ display:inline-block; transform: rotate(-90deg); transform-origin:center; font-size:8px; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted); font-weight:700; white-space:nowrap; }
   .rank-vertical-label-item.passed .rank-vertical-label-text{ color: var(--c-gold); }
@@ -389,6 +389,7 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
 @media (max-width: 560px){
   .wrap{ padding: 0 6px; }
   .panel-body{ padding: 12px 8px; }
+  .granular-picker-panel{ position:fixed; top:50%; left:10px; right:10px; width:auto; max-height:65vh; transform:translateY(-50%); }
   .tabs{ flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 6px; padding-bottom: 2px; }
   .tab{ flex: 0 0 auto; min-width: auto; white-space: nowrap; padding: 11px 14px; font-size: 12.5px; }
   .fill-col{ display: none; }
@@ -403,6 +404,8 @@ footer{ text-align:center; color: var(--muted); font-size: 10px; letter-spacing:
   .train-row, .wk-row{ padding: 12px 10px; gap:6px; }
   .icon svg{ width:22px; height:22px; }
   .appbar-left h1{ font-size: 18px; line-height:1.15; } .hero{ height: 220px; } .dash-hero{ height: 260px; }
+  .dash-hero{ -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%); mask-image: linear-gradient(to bottom, black 78%, transparent 100%); }
+  #panel-dashboard .panel-body{ padding-top: 10px; }
   .appbar{ display:grid; grid-template-columns: 1fr auto; grid-template-areas: "title today" "sub today" "rankrow today"; column-gap:12px; row-gap:1px; align-items:start; padding: 10px 12px; }
   .appbar-left{ display:contents; }
   .appbar-left h1{ grid-area: title; margin:0; }
